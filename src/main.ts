@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // ScrollSmoother requires ScrollTrigger
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
 gsap.registerPlugin(ScrollTrigger,ScrollSmoother);
 
@@ -28,7 +29,7 @@ gsap.from(heroText.chars, {
   y: 15,
   autoAlpha: 0,
   stagger: 0.02,
-  delay: 0.2,
+  delay: 1.4,
 });
 
 let backstageText = SplitText.create("#backstageText", { type: "chars" });
@@ -36,5 +37,16 @@ gsap.from(backstageText.chars, {
   y: 25,
   autoAlpha: 0,
   stagger: 0.1,
-  delay: 0.1,
+  delay: 1.8,
 });
+
+
+// gsap.registerPlugin(DrawSVGPlugin);
+// gsap
+//   .timeline({
+//     repeat: -1, 
+//     defaults:{ duration: 2  , ease: 'power1.inOut' }
+//   })
+//   .set('#formula-stage', { opacity: 1 })
+//   .from('#formula-stage-floor', { drawSVG:'0% 0%' })
+//   .to('path', { drawSVG:'100% 100%' })
