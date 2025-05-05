@@ -1,8 +1,9 @@
 @import url('./preflight.css');
 @import url('./fonts.css');
+@import url('./icon-fonts.css');
 @import url('./helpers.css');
 
-._placeholder  {
+._placeholder {
   width: 64px;
   height: 32px;
   background: red;
@@ -66,21 +67,24 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
 /* navigation */
-.container  {
+.container {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
   padding: 0 24px;
 }
+
 @media (max-width: 1280px) {
   .container {
     max-width: 1280px;
@@ -97,12 +101,20 @@ button:focus-visible {
 .nav__column {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 16px;
 }
 
 .nav__logo {
   width: 128px;
   height: auto;
+  margin: 0 60px 0 0;
+}
+
+.nav__line {
+  width: 1px;
+  height: 32px; /* 34px in design */
+  background: #2D2D2D;
+  margin: 0 0 0 32px; /* ugly hack due to button */
 }
 
 /* selectbox */
@@ -115,6 +127,166 @@ button:focus-visible {
   border-radius: 9999px;
   font-size: 14px;
 }
+
 .picker option {
   color: initial;
+}
+
+.backstage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.section--hero {
+  /* position: relative; */
+  
+}
+
+.section__cta {
+  margin: 72px 0 0 0;
+}
+
+.section--hero .backstage {
+  z-index: -1;
+}
+
+.section__content {
+  position: absolute;
+  top:auto;
+  bottom: 72px;
+  left: 24px;
+}
+
+.backstage__title {
+  color: #000;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #766433;
+  font-family: 'Gilmer';
+  font-weight: 500;
+  font-size: 330px;
+  height: 400px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -70px;
+  text-wrap: no-wrap;
+  /* opacity: 0; */
+  /* animation: animation-backstage-title 1.5s forwards; */
+}
+
+@media (max-width: 1600px) {
+  .backstage__title {
+    top: 40px;
+    font-size: 250px;
+  }
+}
+
+.backstage__image {
+  position: absolute;
+  top: -280px;
+  width: 858px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: animation-backstage-image 1.3s forwards cubic-bezier(0.28, 1.03, 1, 1);
+}
+
+.backstage__image::after {
+  content: '';
+  background: #0A0A0A;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(10, 10, 10, 1) 10%, rgba(10, 10, 10, 1) 89%, rgba(255, 255, 255, 0) 100%);
+position: absolute;
+top: 0;
+left: 0;
+width: 858px;
+height: 100%;
+z-index: -10;
+/* animation: animation-backstage-image 0.5s forwards; */
+}
+
+@keyframes animation-backstage-image {
+  0% {
+    opacity: 0;
+    top: -300px;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.button {
+  font-family: 'Inter';
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 48px;
+  text-align: center;
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  background: #B87C1D;
+  background: linear-gradient(223deg,rgba(184, 124, 29, 1) 0%, rgba(234, 198, 102, 1) 45%, rgba(234, 198, 102, 1) 100%);
+  border-radius: 999px;
+  color: #0A0A0A;
+  transition: color 0.2s ease-in;
+  border: 1px solid transparent;
+}
+.button:hover {
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.button .icon {
+  font-size: 20px;
+  padding: 0 8px 0 0;
+  position: relative;
+  top: 2px;
+}
+
+.button--link {
+  background: transparent;
+  color: #EAC666;
+  padding: 0 24px;
+}
+.button--link:hover {
+  background: #000;
+  color: #fff;    
+}
+
+.ticker {
+  padding: 0 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.ticker + .ticker {
+  /* margin: 0 0 0 32px; */
+}
+.ticker__title {
+  font-size: 12px;
+}
+.ticker__price {
+  font-size: 14px;
+  color: #fff;
+}
+.ticker__icon {
+  font-size: 24px;
+  position: absolute;
+  left: -4px;
+  top: 0;
+}
+.ticker--gold,
+.ticker--gold .ticker__icon {
+  color: #EAC666;
+}
+.ticker--silver,
+.ticker--silver .ticker__icon {
+  color: #BCBCBC;
 }
