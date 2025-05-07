@@ -2,14 +2,28 @@ import './styles/index.css'
 import Lenis from 'lenis';
 
 import { gsap } from "gsap";
-    
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // ScrollSmoother requires ScrollTrigger
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
-import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
-gsap.registerPlugin(ScrollTrigger,ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(SplitText);
+
+// Preload website
+document.addEventListener('DOMContentLoaded', function () {
+  const preloader = document.getElementById('preloader');
+
+  window.scrollTo(0, 0);
+  if (preloader) {
+    preloader.classList.add('fade-out');
+    preloader.addEventListener('transitionend', () => {
+      preloader.remove();
+    });
+  }
+  document.body.classList.remove('not-revealed');
+});
 
 // Initialize Lenis
 const lenis = new Lenis()
@@ -20,7 +34,7 @@ function raf(time: number) {
 }
 requestAnimationFrame(raf);
 
-gsap.registerPlugin(SplitText);
+
 
 //    gsap.set("h1", { opacity: 1 });
 

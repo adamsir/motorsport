@@ -251,6 +251,17 @@ textarea,
   opacity: 1; /* 4 */
 }
 
+/* 
+  Remove select arrow
+*/
+
+select {
+  -webkit-appearance: none; /* For Chrome */
+  -moz-appearance: none; /* For Firefox */
+  appearance: none; /* For modern browsers */
+  cursor: pointer;
+}
+
 /*
   Restore default font weight.
 */
