@@ -233,7 +233,7 @@ button:focus-visible {
   overflow: hidden;
   position: absolute;
   top: 0;
-  left: -8 vw;
+  left: -8vw;
   text-wrap: no-wrap;
   /* opacity: 0; */
   /* animation: animation-backstage-title 1.5s forwards; */
