@@ -26,7 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Initialize Lenis
-const lenis = new Lenis()
+const lenis = new Lenis({
+  smooth: true,
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+});
 
 function raf(time: number) {
   lenis.raf(time)
@@ -54,13 +59,63 @@ gsap.from(backstageText.chars, {
   delay: 1.8,
 });
 
+// Sync ScrollTrigger with Lenis
+lenis.on('scroll', ScrollTrigger.update)
 
-// gsap.registerPlugin(DrawSVGPlugin);
-// gsap
-//   .timeline({
-//     repeat: -1, 
-//     defaults:{ duration: 2  , ease: 'power1.inOut' }
-//   })
-//   .set('#formula-stage', { opacity: 1 })
-//   .from('#formula-stage-floor', { drawSVG:'0% 0%' })
-//   .to('path', { drawSVG:'100% 100%' })
+ScrollTrigger.scrollerProxy(document.body, {
+  scrollTop(value) {
+    return arguments.length ? lenis.scrollTo(value) : window.scrollY
+  },
+  getBoundingClientRect() {
+    return {
+      top: 0,
+      left: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    }
+  },
+  pinType: document.body.style.transform ? 'transform' : 'fixed'
+})
+
+// const startY = 0;
+// const moveY = -20;
+// const coinsFigure = '.section--promo';
+// gsap.set(coinsFigure, { opacity: 0 });
+// gsap.to(coinsFigure, {
+//   x: 0, // moves from translateX(100px) → translateX(600px)
+//   y: 200,
+//   opacity: 1,
+//   ease: "elastic",
+//   scrollTrigger: {
+//     trigger: '.section--promo',
+//     scrub: true,
+//     onUpdate: self => {
+//       const progress = self.progress
+//       gsap.set(coinsFigure, { y: startY + progress * moveY});
+//     }
+//   }
+// });
+gsap.set('.scroll-indicator', { opacity: 1, });
+gsap.to('.scroll-indicator', {
+  x: 0, // moves from translateX(100px) → translateX(600px)
+  y: 0,
+  opacity: 0,
+  ease: "elastic",
+  scrollTrigger: {
+    trigger: '.section--promo',
+    scrub: true,
+  }
+});
+
+
+gsap.set('.section--promo', { opacity: 0, });
+gsap.to('.section--promo', {
+  x: 0, // moves from translateX(100px) → translateX(600px)
+  y: -150,
+  opacity: 1,
+  ease: "elastic",
+  scrollTrigger: {
+    trigger: '.section--promo',
+    scrub: true,
+  }
+});
