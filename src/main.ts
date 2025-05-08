@@ -26,12 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Initialize Lenis
-const lenis = new Lenis({
-  smooth: true,
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-});
+const lenis = new Lenis();
 
 function raf(time: number) {
   lenis.raf(time)
@@ -63,8 +58,8 @@ gsap.from(backstageText.chars, {
 lenis.on('scroll', ScrollTrigger.update)
 
 ScrollTrigger.scrollerProxy(document.body, {
-  scrollTop(value) {
-    return arguments.length ? lenis.scrollTo(value) : window.scrollY
+  scrollTop(value: number | undefined) {
+    return arguments.length ? lenis.scrollTo(value as number) : window.scrollY
   },
   getBoundingClientRect() {
     return {
