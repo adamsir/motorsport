@@ -224,7 +224,7 @@ button:focus-visible {
 }
 
 
-@media (min-height: 720px) {
+@media (min-height: 640px) {
   .section--hero .section__content {
     position: absolute;
     width: 100%;
@@ -549,6 +549,7 @@ button:focus-visible {
   position: fixed;
   top: 25vh;
   right: -45px;
+  z-index: 1;
 }
 @media (max-width: 1400px) {
   .stepper-wrapper {
