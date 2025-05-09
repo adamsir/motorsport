@@ -39,7 +39,7 @@ body {
 }
 
 h1 {
-  font-size: 4.25em;
+  font-size: 4.25rem;
   line-height: 1.22;
   font-weight: 500;
   font-family: 'Gilmer';
@@ -93,15 +93,38 @@ button:focus-visible {
 .container {
   width: 100%;
   min-height: 100vh;
-  max-width: 1920px;
+  
   margin: 0 auto;
-  padding: 0 190px;
+  
   position: relative;
+}
+
+@media (min-width: 1281px) {
+  .container {
+    max-width: 1920px;
+    padding: 0 190px;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1400px) {
+  .container {
+    /* max-width: 1920px; */
+    padding: 0 120px 0 30px;
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding: 0 36px;
+  }
 }
 
 @media (max-width: 1280px) {
   .container {
     max-width: 1280px;
+    padding: 0 36px;
   }
 }
 
@@ -111,6 +134,7 @@ button:focus-visible {
   width: 100%;
   margin: 40px 0 0 0;
   position: relative;
+  z-index: 1;
 }
 
 .nav__column {
@@ -214,6 +238,10 @@ button:focus-visible {
 
 .section--hero .backstage {
   z-index: -1;
+}
+
+.section--hero h1 {
+  font-size: 3vw;
 }
 
 .section__content {
@@ -443,6 +471,10 @@ button:focus-visible {
   }
 }
 
+.figure-coins {
+  max-width: 30vw;
+}
+
 .figure-coins__inner {
   display: flex;
   align-items: end;
@@ -479,23 +511,7 @@ button:focus-visible {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  /* content: '';
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  animation: animation-scroll-indicator-reveal 3s ease forwards;
-  animation-delay: 2s; */
 }
-
-/* .section-viewport.with-scroll-indicator.active:after {
-  opacity: 0 !important;
-}
-.section-viewport.with-scroll-indicator.inactive:after {
-  opacity: 1 !important;
-}
-@keyframes animation-scroll-indicator-reveal {
-  0% { opacity: 0;}
-  100% { opacity: 1;}
-} */
 
 .section__cards {
   display: grid;
@@ -533,6 +549,11 @@ button:focus-visible {
   position: fixed;
   top: 25vh;
   right: -45px;
+}
+@media (max-width: 1400px) {
+  .stepper-wrapper {
+    display: none;
+  }
 }
 
 .stepper {

@@ -106,7 +106,7 @@ gsap.to('.scroll-indicator', {
 gsap.set('.section--promo', { opacity: 0, });
 gsap.to('.section--promo', {
   x: 0, // moves from translateX(100px) → translateX(600px)
-  y: -150,
+  y: -100,
   opacity: 1,
   ease: "elastic",
   scrollTrigger: {
